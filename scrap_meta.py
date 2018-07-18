@@ -3,10 +3,13 @@ import csv
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np 
+from user_agent import generate_user_agent
+
 
 metacritic_base = "http://www.metacritic.com/browse/games/release-date/available/pc/metascore?view=detailed&page="
-hdr= {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'User-Agent' : "Magic Browser"}
-filepath='/Users/rra/Downloads/'
+hdr= {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'User-Agent': generate_user_agent(device_type="desktop", os=('mac', 'linux', 'win'))}
+
+filepath=''
 
 for i in range(0,54):
     game= []

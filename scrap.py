@@ -1,35 +1,10 @@
-# import urllib2
-# import csv
-# from bs4 import BeautifulSoup
-# import pandas as pd
-# import numpy as np 
 
-# metacritic_base = "http://www.metacritic.com/browse/games/release-date/available/pc/metascore?page="
-# hdr= {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'User-Agent' : "Magic Browser"}
-
-# game= []
-# for i in range(1,27):
-#     metacritic = metacritic_base+str(i)
-#     page = urllib2.Request(metacritic, headers=hdr )
-#     content = urllib2.urlopen(page).read()
-#     soup = BeautifulSoup(content, 'html.parser')
-#     right_class=soup.find_all('li', class_='product game_product')
-#     for item in right_class:
-#         link=item.find('a')
-#         game.append(link.get('href'))
-
-# with open('/Users/rra/Downloads/gamenames.txt', 'wb') as myfile:
-#     wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-#     wr.writerow(game)
-
-#get reviews
 import urllib2
 import csv
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np 
 import sys
-from selenium import webdriver
 from user_agent import generate_user_agent
 
 from random import randint
@@ -37,7 +12,6 @@ from time import sleep
 
 reload(sys)
 sys.setdefaultencoding('utf8')
-#filepath='/Users/rra/Downloads/'
 filepath=''
 with open(filepath+'gamenames.txt', 'rb') as myfile:   
     reader = csv.reader(myfile)
@@ -53,7 +27,6 @@ for game in games:
     print(game)
     for i in range(0,2000):
         review_page='http://www.metacritic.com/'+ game + '/user-reviews?page='+str(i)
-        #print(review_page)
         print(lines)
         sleep(randint(20,100))
         page = urllib2.Request(review_page, headers=hdr)
@@ -88,4 +61,4 @@ for game in games:
             with open(filepath+'game_review.csv', 'a') as f:
                 df.to_csv(f, index=False, quoting=csv.QUOTE_NONNUMERIC, sep="|")
             g=[]
-        else: break       
+        else: break     
