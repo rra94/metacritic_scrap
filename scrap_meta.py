@@ -50,7 +50,7 @@ for i in range(0,54):
             u = user_score.text
         except: u=''
         game=[g,s,d,r,p,gr.strip(),u]
-        df = pd.DataFrame(game)
+        df = pd.DataFrame([game])
         with open(filepath+'gamenames.csv', 'a') as f:
-            df.to_csv(f, index=False, quoting=csv.QUOTE_NONNUMERIC, sep="|")
+            df.to_csv(f, header=False, index=False, quoting=csv.QUOTE_NONNUMERIC, sep="|")
         game= []
